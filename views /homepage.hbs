@@ -1,0 +1,39 @@
+{{> navbar}}
+<main>
+  <section>
+    <ul class="cards">
+      {{#if dogWalkerArray}}
+      <p class="cards-title">Wags Near Area </p>
+      {{/if}}
+      {{#each dogWalkerArray}}
+      <li>
+        <a class="cards-item" href="/profile/{{this._id}}">
+          <div class="cards-img" style="background-image: url({{this.imageUrl}})">
+          </div>
+          <div class="cards-data">
+            <p class="cards-data-name">{{this.username}}</p>
+            <div class="cards-data-location">
+              <img src="/images/pointer.svg" alt="">
+              <p class="cards-data-location-street">{{this.street}}</p>
+            </div>
+            <div class="cards-rating">
+              <p>Wag Type: <span>{{this.wagType}} </span></p>
+            </div>
+          </div>
+        </a>
+      </li>
+      {{/each}}
+    </ul>
+  </section>
+</main>
+<div class="map-container">
+  <div class="arrow-container">
+    <div class="arrow-slide-toogle">
+      <p class="map-text">View Wags</p>
+      <div class="arrow-bg">
+        <img class="arrow-img" src="/images/arrow.svg" alt="Arrow">
+      </div>
+    </div>
+  </div>
+  <div id="map"></div>
+</div>

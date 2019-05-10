@@ -1,0 +1,51 @@
+<header class="top-bar">
+  <nav>
+    <div class="menuToggle">
+      <input class="checkbox" type="checkbox" />
+      {{#if showBullet}}
+      <div class="bullet"></div>
+      {{/if}}
+      <!-- Some spans to act as a hamburger -->
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul class="menu">
+        <li><a href="/">Start</a></li>
+        {{#if currentUser}}
+        {{#if showBullet}}
+        <li class="message-unread">
+          <a href="/profile/message">Messages</a>
+          <div class="bullet bullet--message"></div>
+        </li>
+        {{else}}
+        <li>
+          <a href="/profile/message">Messages</a>
+        </li>
+        {{/if}}
+        <li>
+          <form action="/auth/logout" method="post">
+            <button class="button-transparent" type="submit">Log out</button>
+          </form>
+        </li>
+        {{else}}
+        <li><a href="/auth/signup">Register</a></li>
+        <li><a href="/auth/login">Start Session</a></li>
+        {{/if}}
+        <li class="js-display-switch">
+          <p>Dark mode:</p>
+          <label class="switch js-button-dark-mode">
+            <input type="checkbox" />
+            <div></div>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="avatar">
+    {{#if currentUser}}
+    <a href="/profile/{{currentUser._id}}">
+      <div class="avatar-img" style="background-image:url({{currentUser.imageUrl}})"></div>
+    </a>
+    {{/if}}
+  </div>
+</header>
