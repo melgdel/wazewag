@@ -1,9 +1,15 @@
 var express = require('express');
 const User = require('../models/User');
 const { userIsNotLogged } = require('../middlewares/auth');
-//const parser = require('../helpers/file-upload');
+
 
 var router = express.Router();
+
+
+router.get('/', (req, res, next) =>{
+  res.render('index')
+})
+
 
 router.get('/', async (req, res, next) => {
   try {
@@ -15,14 +21,6 @@ router.get('/', async (req, res, next) => {
       });
     
     res.render('home', { dogWalkerArray });
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.get('/profile', userIsNotLogged, async (req, res, next) => {
-  try {
-    res.redirect('/');
   } catch (error) {
     next(error);
   }

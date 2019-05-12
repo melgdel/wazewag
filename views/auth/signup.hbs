@@ -1,0 +1,18 @@
+
+<main>
+  <section class="signup">
+    <h1 class="signup-title">Signup</h1>
+    <form class="signup-form" action="/auth/signup" method="post">
+      <input class="signup-input" type="text" name="username" placeholder="Username">
+      <input class="signup-input" type="password" name="password" placeholder="Password">
+      
+      <input hidden type="text" name="latitude" class="input-latitude" />
+      <input hidden type="text" name="longitude" class="input-longitude" />
+      <input hidden type="text" name="location" class="input-location" />
+      <button class="button" type="submit">Signup</button>
+    </form>
+    {{> flash}}
+  </section>
+</main>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.4/mapbox-gl-geocoder.min.js'></script>
+<script src="/javascripts/signup.js"></script>

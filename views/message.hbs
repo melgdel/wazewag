@@ -1,0 +1,69 @@
+{{> navbar}}
+<main>
+  <section>
+    {{#if noMessages}}
+    <p class="cards-title">No messages</p>
+    {{/if}}
+    {{#each filterStateDogwalker}}
+    <li class="cards-item">
+      <div class="cards-img" style="background-image: url({{this.parent.imageUrl}})">
+      </div>
+      <div class="cards-data">
+        <p class="cards-data-name extra--vertical--margin"><a
+            href="/profile/{{this.parent._id}}">{{this.parent.username}}</a></p>
+        <div class="cards-data-location extra--vertical--margin">
+          <p>requested services</p>
+        </div>
+        <div>
+          <a class="button button--small" href="/profile/message/{{this._id}}/accept">Accept</a>
+          <a class="button button--delete button--small" href="/profile/message/{{this._id}}/decline">Reject</a>
+        </div>
+      </div>
+    </li>
+    {{/each}}
+    {{#each filterStateParent}}
+    <li class="cards-item">
+      <div class="cards-img" style="background-image: url({{this.dogwalker.imageUrl}})">
+      </div>
+      <div class="cards-data">
+        <p class="cards-data-name"><a href="/profile/{{this.dogwalker._id}}">{{this.dogwalker.username}}</a></p>
+        <div class="cards-data-location extra--vertical--margin">
+          <p>status state: {{this.state}}</p>
+        </div>
+        {{#if this.rejected}}
+        <div>
+          <form action="/profile/message/{{this._id}}/delete" method="post">
+            <button class="button button--small" type="submit">Close</button>
+          </form>
+        </div>
+        {{else}}
+        <div>
+          <a class="button button--small" href="/profile/message/{{this._id}}/feedback">rate
+            {{this.dogwalker.username}}</a>
+        </div>
+        {{/if}}
+      </div>
+    </li>
+    {{/each}}
+    {{#each filterStateFeedback}}
+    <li class="cards-item">
+      <div class="cards-img" style="background-image: url({{this.dogwalker.imageUrl}})">
+      </div>
+      <div class="cards-data">
+        <p class="cards-data-name"><a href="/profile/{{this.dogwalker._id}}">{{this.dogwalker.username}}</a></p>
+        <div class="cards-data-location extra--vertical--margin">
+          <p>¿Did you like the service provided?</p>
+        </div>
+        <div class="cards-buttons-feedback">
+          <form method="POST" action="/profile/message/{{this._id}}/feedback/yes">
+            <button class="button button--small" type="submit">yes</button>
+          </form>
+          <form method="POST" action="/profile/message/{{this._id}}/feedback/no">
+            <button class="button button--small button--delete" type="submit">no</button>
+          </form>
+        </div>
+      </div>
+    </li>
+    {{/each}}
+  </section>
+</main>

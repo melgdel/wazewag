@@ -1,0 +1,40 @@
+{{> navbar}}
+<main>
+  <section>
+    <article class="profile">
+      <div class="profile-details">
+        <div class="profile-details-avatar" style="background-image:url({{userSelected.imageUrl}})">
+        </div>
+        <div class="profile-details-info">
+          <p class="profile-details-info-name"><a href="/dogwalker/{{userSelected._id}}">{{userSelected.username}}</a>
+          </p>
+          <div class="profile-details-location">
+            <img src="/images/pointer.svg" alt="">
+            <p>{{userSelected.city}}</p>
+          </div>
+          <div class="profile-details-rating">
+            <p>Positive Feedback: <span>{{userSelected.positiveFeedback}} de {{userSelected.totalFeedback}}</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="profile-description">
+        <p class="phone" >Teléfono: <span>619945320</span></p>
+        <p>{{userSelected.description}}</p>
+      </div>
+      {{#if isMyUser}}
+      <div>
+        <form class="profile-actions" action="/profile/{{userSelected._id}}/delete" method="post">
+          <a class="button" href="/profile/edit">Editar</a>
+          <button class="button button--delete" type="submit">Erase Account</button>
+        </form>
+      </div>
+      {{/if}}
+      {{#if isDogWalker}}
+      <div class="button-contract">
+        <a class="button" href="/profile/{{userSelected._id}}/hire">Hire</a>
+      </div>
+      </form>
+      {{/if}}
+    </article>
+  </section>
+</main>

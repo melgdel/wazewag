@@ -3,6 +3,8 @@ var express = require('express');
 const User = require('../models/User');
 const { userIsLogged, userIsNotLogged } = require('../middlewares/auth');
 const bcrypt = require('bcrypt');
+var router = express.Router();
+
 
 const saltRounds = 10;
 var router = express.Router();
@@ -18,26 +20,26 @@ router.get('/signup', userIsLogged, (req, res, next) => {
 router.post('/signup', userIsLogged, async (req, res, next) => {
   const { username, password, userType, latitude, longitude, location } = req.body;
   try {
-    // prove filled sections
+    // commprobar tots els camps plens
     if (!username || !password || !userType) {
-      req.flash('validation', 'Fill all Information');
+      req.flash('validation', 'Rellene todos los campos');
       res.redirect('/auth/signup');
       return;
     }
 
-    // prove user is in DB
+    // comprobar que el usuari està a la db
     const result = await User.findOne({ username });
     if (result) {
-      req.flash('validation', 'this user exist');
+      req.flash('validation', 'Este usuario ya existe');
       res.redirect('/auth/signup');
       return;
     }
 
-    // encrypt password
+    // encriptar password
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
 
-    // create user
+    // crear user
     const newUser = {
       username,
       password: hashedPassword,
@@ -73,17 +75,17 @@ router.post('/login', userIsLogged, async (req, res, next) => {
   const { username, password } = req.body;
 
   try {
-    // prove filled sections
+    // commprobar tots els camps plens
     if (!username || !password) {
-      req.flash('validation', 'Fill all Information');
+      req.flash('validation', 'Rellene todos los campos');
       res.redirect('/auth/login');
       return;
     }
 
-    // prove credentials
+    // comprobar credencials
     const user = await User.findOne({ username });
     if (!user) {
-      req.flash('validation', 'User does not exist');
+      req.flash('validation', 'El usuario no existe');
       res.redirect('/auth/login');
       return;
     }
@@ -92,7 +94,7 @@ router.post('/login', userIsLogged, async (req, res, next) => {
       res.redirect('/');
       return;
     } else {
-      req.flash('validation', 'Password is incorrect ');
+      req.flash('validation', 'La contraseña es incorrecta');
       res.redirect('/auth/login');
       return;
     }
