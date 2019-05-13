@@ -6,7 +6,7 @@
 // Un padre o canguro ha solicitado canguro y le han aceptado o rechazado.
 // Un canguro ha recibido solicitud de padre o canguro.
 
-const checkBullet = async (currentUser) => {
+/*const checkBullet = async (currentUser) => {
   try {
     let showBullet = false;
     if (currentUser) {

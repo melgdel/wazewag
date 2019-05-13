@@ -10,11 +10,9 @@ const saltRounds = 10;
 var router = express.Router();
 
 // Signup
-router.get('/signup', userIsLogged, (req, res, next) => {
-  const data = {
-    messages: req.flash('validation')
-  };
-  res.render('auth/signup', data);
+router.get('/signup', (req, res, next) => {
+
+  res.render('signup');
 });
 
 router.post('/signup', userIsLogged, async (req, res, next) => {
@@ -23,7 +21,7 @@ router.post('/signup', userIsLogged, async (req, res, next) => {
     // commprobar tots els camps plens
     if (!username || !password || !userType) {
       req.flash('validation', 'Rellene todos los campos');
-      res.redirect('/auth/signup');
+      res.redirect('/signup');
       return;
     }
 
@@ -31,7 +29,7 @@ router.post('/signup', userIsLogged, async (req, res, next) => {
     const result = await User.findOne({ username });
     if (result) {
       req.flash('validation', 'Este usuario ya existe');
-      res.redirect('/auth/signup');
+      res.redirect('/signup');
       return;
     }
 
@@ -68,7 +66,7 @@ router.get('/login', userIsLogged, (req, res, next) => {
   const data = {
     messages: req.flash('validation')
   };
-  res.render('auth/login', data);
+  res.render('login', data);
 });
 
 router.post('/login', userIsLogged, async (req, res, next) => {
@@ -78,7 +76,7 @@ router.post('/login', userIsLogged, async (req, res, next) => {
     // commprobar tots els camps plens
     if (!username || !password) {
       req.flash('validation', 'Rellene todos los campos');
-      res.redirect('/auth/login');
+      res.redirect('/login');
       return;
     }
 
@@ -86,7 +84,7 @@ router.post('/login', userIsLogged, async (req, res, next) => {
     const user = await User.findOne({ username });
     if (!user) {
       req.flash('validation', 'El usuario no existe');
-      res.redirect('/auth/login');
+      res.redirect('/login');
       return;
     }
     if (bcrypt.compareSync(password, user.password)) {
@@ -95,7 +93,7 @@ router.post('/login', userIsLogged, async (req, res, next) => {
       return;
     } else {
       req.flash('validation', 'La contraseña es incorrecta');
-      res.redirect('/auth/login');
+      res.redirect('/login');
       return;
     }
   } catch (error) {

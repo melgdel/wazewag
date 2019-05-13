@@ -1,4 +1,4 @@
-//const Contract = require('../models/Contract');
+const Contract = require('../models/Contract');
 var ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports = {

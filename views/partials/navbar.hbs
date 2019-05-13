@@ -1,3 +1,6 @@
+
+
+
 <header class="top-bar">
   <nav>
     <div class="menuToggle">
@@ -10,7 +13,7 @@
       <span></span>
       <span></span>
       <ul class="menu">
-        <li><a href="/">other waggers</a></li>
+        <li><a href="/"></a></li>
         {{#if currentUser}}
         {{#if showBullet}}
         <li class="message-unread">
@@ -28,11 +31,11 @@
           </form>
         </li>
         {{else}}
-        <li><a href="/auth/signup">sign-up</a></li>
-        <li><a href="/auth/login">log in</a></li>
+        <li><a href="/signup">sign-up</a></li>
+        <li><a href="/login">log in</a></li>
         {{/if}}
         <li class="js-display-switch">
-          <p></p>
+          <p>Dark mode:</p>
           <label class="switch js-button-dark-mode">
             <input type="checkbox" />
             <div></div>
@@ -41,11 +44,5 @@
       </ul>
     </div>
   </nav>
-  <div class="avatar">
-    {{#if currentUser}}
-    <a href="/profile/{{currentUser._id}}">
-      <div class="avatar-img" style="background-image:url({{currentUser.imageUrl}})"></div>
-    </a>
-    {{/if}}
   </div>
 </header>

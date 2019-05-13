@@ -583,7 +583,7 @@ input.cards-data-name {
 }
 
 #map {
-  height: 100vh;
+  height: 300vh;
   width: 100%;
 }
 
@@ -612,7 +612,7 @@ input.cards-data-name {
 
 .map-text {
   position: relative;
-  z-: 1;
+  z-index: 1;
   font-weight: 600;
   margin-top: 3px;
 }

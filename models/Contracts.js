@@ -15,7 +15,7 @@ const contractSchema = new Schema({
     ref: 'User'
   },
   state: {
-    type: String,
+    type: String ,
     enum: ['Accepted', 'Regectted', 'Pending', 'Feedback'],
     default: 'Pending'
   }

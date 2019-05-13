@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon -e js,json,hbs bin/www"
+    "start": "node app.js",
+    "dev": "nodemon -e js,json,hbs app.js"
   },
   "repository": {
     "type": "git",

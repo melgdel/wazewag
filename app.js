@@ -11,10 +11,11 @@ const flash = require('connect-flash');
 const logger = require('morgan');
 
 
+const app = express();
+
+
 require('./config/db.config');
 require('./config/hbs.config');
-
-const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,7 +23,6 @@ app.set('view engine', 'hbs');
 
 // Flash
 app.use(flash());
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -31,17 +31,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   //mal
-  //app.locals.currentUser = null;
+ // app.locals.currentUser = req.session.currentUser;
   next();
 });
 
 app.use(async (req, res, next) => {
   //mal
- // app.locals.showBullet = await notification(req.session.currentUser);
+  //app.locals.showBullet = await notification(req.session.currentUser);
   next();
 });
 
-app.get('/',(req,res) => res.redirect('/auth'));
+//app.get('/',(req,res) => res.redirect('/auth'));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);

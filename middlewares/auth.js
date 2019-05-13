@@ -8,7 +8,7 @@ module.exports = {
   },
   userIsNotLogged (req, res, next) {
     if (!req.session.currentUser) {
-      res.redirect('/auth/login');
+      res.redirect('/login');
       return;
     }
     next();
